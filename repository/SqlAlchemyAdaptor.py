@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from sqlalchemy.orm import Session
 
 from repository.BaseAdaptor import BaseAdaptor
 from repository.EntityNotFoundException import EntityNotFoundException

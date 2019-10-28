@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 from domain.models.User import User
 from repository.SqlAlchemyAdaptor import SqlAlchemyAdaptor
 
