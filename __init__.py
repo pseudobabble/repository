@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy.ext.declarative import declarative_base
 
 engine = create_engine('sqlite:///db.sqlite')
@@ -14,7 +14,8 @@ def get_session():
     :return: Session
     """
     sqlite_engine = engine
-    Session = sessionmaker(bind=sqlite_engine)
+    session_factory = sessionmaker(bind=sqlite_engine)
+    Session = scoped_session(session_factory)
     session = Session()
 
     return session
