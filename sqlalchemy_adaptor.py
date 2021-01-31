@@ -52,6 +52,9 @@ class SqlAlchemyAdaptor(BaseAdaptor):
 
         return entity
 
+    def get_all(self):
+        return self.session.query(self.entity).all()
+
     def save(self, entity):
         """
         Add the entity to the session, and commit. This follows the Aggregate
@@ -69,3 +72,21 @@ class SqlAlchemyAdaptor(BaseAdaptor):
 
         self.session.add(entity)
         self.session.commit()
+
+    def remove(self, entity):
+        """
+        Delete a specific entity.
+
+        :param entity:
+        :return:
+        """
+        self.session.delete(entity)
+
+    def remove_by_id(self, entity_id: int):
+        """
+        Delete an entity by its id.
+
+        :param entity_id:
+        :return:
+        """
+        self.session.query(self.entity).filter(self.entity.id == entity_id).delete()
